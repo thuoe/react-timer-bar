@@ -1,0 +1,28 @@
+{
+  "name": "react-timer-bar",
+  "version": "0.0.1",
+  "private": false,
+  "description": "A simple React component used to countdown time",
+  "repository": "https://github.com/thuoe/react-timer-bar.git",
+  "license": "MIT",
+  "author": "Eddie Thuo <thuoeddie17@gmail.com>",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server --open"
+  },
+  "dependencies": {
+    "@types/react": "^17.0.19",
+    "@types/react-dom": "^17.0.9",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "typescript": "^4.4.2"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^5.3.2",
+    "ts-loader": "^9.2.5",
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.0.0"
+  }
+}
