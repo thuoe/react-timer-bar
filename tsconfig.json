@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"target": "ES5",
 		"module": "commonjs",
-		"jsx": "react-jsx",
+		"jsx": "react",
 		"sourceMap": true,
 		"outDir": "./dist/",
 		"allowJs": true,
