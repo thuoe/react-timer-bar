@@ -12,6 +12,7 @@ jobs:
           cache: 'yarn'
   Lint:
     needs: Installation
+    runs-on: ubuntu-latest
     steps:
       - name: Install dependencies & lint source code...
         run: yarn install && yarn lint
