@@ -14,5 +14,8 @@ jobs:
     needs: Installation
     runs-on: ubuntu-latest
     steps:
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
       - name: Install dependencies & lint source code...
         run: yarn install && yarn lint
