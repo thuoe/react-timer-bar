@@ -1,7 +1,7 @@
 name: Simple CI Pipeline
 on: [push]
 jobs:
-  Installation:
+  Lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -10,12 +10,5 @@ jobs:
         with: 
           node-version: '16'
           cache: 'yarn'
-  Lint:
-    needs: Installation
-    runs-on: ubuntu-latest
-    steps:
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - name: Install dependencies & lint source code...
+      - name: lint source code...
         run: yarn install && yarn lint
