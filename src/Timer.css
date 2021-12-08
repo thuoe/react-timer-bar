@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+
+.timer-container {
+  display: block;
+  background-color: red;
+  border-radius: 3px;
+  width: 300px;
+  height: 100px;
+  text-align: center;
+}
+
+.timer-bar { 
+  position: relative;
+  height: 100%;
+  width: 0;
+  border-radius: 3px;
+  transition: width 200ms;
+} 
+
+span {
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+}
