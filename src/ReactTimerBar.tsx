@@ -6,7 +6,7 @@ type ReactTimerProps = {
   fillColor: string;
 };
 
-export const ReactTimerBar = ({ time, fillColor }: ReactTimerProps) => {
+export const ReactTimerBar = ({ time = 0, fillColor = 'blue' }: ReactTimerProps): JSX.Element => {
   const timerBar = React.useRef<HTMLDivElement | null>(null);
   const [timeElapsed, setTimeElapsed] = React.useState<number>(0);
 
