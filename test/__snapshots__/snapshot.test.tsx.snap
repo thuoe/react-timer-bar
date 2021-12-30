@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Basic snapshot test renders succesfully 1`] = `
+<div
+  className="css-1991io3"
+>
+  <div
+    className="css-1km8or2"
+  />
+  <span
+    title="Time Elapsed"
+  >
+    Time Elapsed 
+    0:30
+  </span>
+</div>
+`;
