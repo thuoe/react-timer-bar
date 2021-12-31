@@ -1,7 +1,7 @@
 name: Simple CI Pipeline
 on: [push]
 jobs:
-  Lint:
+  SimpleCI:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -10,5 +10,9 @@ jobs:
         with: 
           node-version: '16'
           cache: 'yarn'
-      - name: lint source code...
-        run: yarn install && yarn lint
+      - name: Install
+        run: 'yarn install'
+      - name: Lint
+        run: yarn lint
+      - name: Test
+        run: yarn test

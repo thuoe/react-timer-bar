@@ -2,7 +2,8 @@
 	"compilerOptions": {
 		"target": "ES5",
 		"module": "commonjs",
-		"jsx": "react",
+		"jsx": "react-jsx",
+    "jsxImportSource": "@emotion/react",
 		"sourceMap": true,
 		"outDir": "./dist/",
 		"allowJs": true,
