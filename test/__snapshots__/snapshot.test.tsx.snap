@@ -11,7 +11,7 @@ exports[`Basic snapshot test renders succesfully 1`] = `
     title="Time Elapsed"
   >
     Time Elapsed 
-    0:30
+    0:00
   </span>
 </div>
 `;
