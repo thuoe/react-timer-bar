@@ -3,9 +3,11 @@
 exports[`Basic snapshot test renders succesfully 1`] = `
 <div
   className="css-1991io3"
+  id="container"
 >
   <div
     className="css-1km8or2"
+    id="progress-bar"
   />
   <span
     title="Time Elapsed"

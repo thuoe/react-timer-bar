@@ -62,8 +62,8 @@ export const ReactTimerBar = ({ time = 0, fillColor = 'blue' }: ReactTimerProps)
 
   return (
     <>
-      <Container ref={container}>
-        <Timerbar fillColor={fillColor} fillWidth={fillWidth}></Timerbar>
+      <Container id="container" ref={container}>
+        <Timerbar id='progress-bar' fillColor={fillColor} fillWidth={fillWidth}></Timerbar>
         <span title="Time Elapsed">Time Elapsed {formatTime(timeElapsed)}</span>
       </Container>
     </>
