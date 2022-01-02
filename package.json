@@ -11,7 +11,8 @@
     "build": "webpack",
     "start": "webpack-dev-server --open",
     "lint": "eslint .",
-    "test": "jest"
+    "test": "jest",
+    "test:update-snapshots": "jest --update-snapshot"
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.16.0",
+    "@emotion/jest": "^11.7.1",
     "@testing-library/jest-dom": "testing-library/jest-dom",
     "@testing-library/react": "^12.1.2",
     "@types/jest": "^27.0.3",

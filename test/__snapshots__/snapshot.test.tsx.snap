@@ -1,17 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Basic snapshot test renders succesfully 1`] = `
+.emotion-0 {
+  position: relative;
+  background-color: red;
+  border-radius: 3px;
+  width: 300px;
+  height: 100px;
+  text-align: center;
+}
+
+.emotion-1 {
+  position: relative;
+  height: 100%;
+  -webkit-transition: width 200ms;
+  transition: width 200ms;
+  background-color: red;
+  width: 0px;
+}
+
 <div
-  className="css-1991io3"
+  className="emotion-0"
+  id="container"
 >
   <div
-    className="css-1km8or2"
+    className="emotion-1"
+    id="progress-bar"
   />
   <span
     title="Time Elapsed"
   >
     Time Elapsed 
-    0:30
+    0:00
   </span>
 </div>
 `;
