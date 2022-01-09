@@ -7,3 +7,20 @@
 </p>
 
 <p align="center">A simple React bar component used to countdown time.</p>
+
+## Run Demo
+
+To load the demo page, simply execute:
+
+```
+yarn start
+```
+
+## Run Tests 🧪
+
+
+Simple run all unit tests, execute: 
+
+```
+yarn run test
+```
