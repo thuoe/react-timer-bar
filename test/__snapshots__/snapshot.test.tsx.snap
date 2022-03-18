@@ -11,11 +11,11 @@ exports[`Basic snapshot test renders succesfully 1`] = `
 }
 
 .emotion-1 {
-  position: relative;
+  position: absolute;
+  background-color: red;
   height: 100%;
   -webkit-transition: width 200ms;
   transition: width 200ms;
-  background-color: red;
   width: 0px;
 }
 
@@ -25,6 +25,8 @@ exports[`Basic snapshot test renders succesfully 1`] = `
 >
   <div
     className="emotion-1"
+    direction="leftToRight"
+    fill={0}
     id="progress-bar"
   />
   <span
