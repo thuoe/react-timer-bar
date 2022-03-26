@@ -28,45 +28,43 @@ const Container = styled.div(() => ({
 
 const Timerbar = styled.div<TimerBarProps>(({ fill, fillColor, direction }) => {
   const styles: CSSObject = { position: 'absolute', backgroundColor: fillColor };
-  if (direction === 'leftToRight') {
-    return {
-      ...styles,
-      height: '100%',
-      transition: 'width 200ms',
-      backgroundColor: fillColor,
-      width: `${fill}px`,
-    };
-  }
 
-  if (direction === 'rightToLeft') {
-    return {
-      ...styles,
-      height: '100%',
-      transition: 'width 200ms',
-      backgroundColor: fillColor,
-      width: `${fill}px`,
-      right: 0,
-    };
-  }
-
-  if (direction === 'bottomToTop') {
-    return {
-      ...styles,
-      width: '100%',
-      transition: 'height 200ms',
-      height: `${fill}px`,
-      bottom: 0,
-    };
-  }
-
-  if (direction === 'topToBottom') {
-    return {
-      ...styles,
-      width: '100%',
-      transition: 'height 200ms',
-      height: `${fill}px`,
-      top: 0,
-    };
+  switch (direction) {
+    case 'leftToRight':
+      return {
+        ...styles,
+        height: '100%',
+        transition: 'width 200ms',
+        backgroundColor: fillColor,
+        width: `${fill}px`,
+      };
+    case 'rightToLeft':
+      return {
+        ...styles,
+        height: '100%',
+        transition: 'width 200ms',
+        backgroundColor: fillColor,
+        width: `${fill}px`,
+        right: 0,
+      };
+    case 'bottomToTop':
+      return {
+        ...styles,
+        width: '100%',
+        transition: 'height 200ms',
+        height: `${fill}px`,
+        bottom: 0,
+      };
+    case 'topToBottom':
+      return {
+        ...styles,
+        width: '100%',
+        transition: 'height 200ms',
+        height: `${fill}px`,
+        top: 0,
+      };
+    default:
+      break;
   }
 });
 
