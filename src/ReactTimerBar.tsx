@@ -68,16 +68,16 @@ const Timerbar = styled.div<TimerBarProps>(({ fill, fillColor, direction }) => {
   }
 });
 
+const formatTime = (newTime: number): string => {
+  const minutes = Math.floor(newTime / 60);
+  const seconds = newTime - minutes * 60; 
+  const secondPrefix = seconds < 10 ? '0' : '';   
+  return `${minutes}:${secondPrefix}${seconds}`;
+};
+
 export const ReactTimerBar = ({ time = 0, fillColor = 'blue', direction = 'leftToRight' }: ReactTimerProps): JSX.Element => {
   const container = React.useRef<HTMLDivElement | null>(null);
   const [timeElapsed, setTimeElapsed] = React.useState<number>(0);
-
-  function formatTime(newTime: number): string {
-    const minutes = Math.floor(newTime / 60);
-    const seconds = newTime - minutes * 60; 
-    const secondPrefix = seconds < 10 ? '0' : '';   
-    return `${minutes}:${secondPrefix}${seconds}`;
-  }
 
   React.useEffect(() => {
     setTimeElapsed(0);
