@@ -12,6 +12,7 @@
     "start": "webpack-dev-server --open",
     "lint": "eslint .",
     "test": "jest",
+    "test:watch": "jest --watch",
     "test:update-snapshots": "jest --update-snapshot"
   },
   "dependencies": {
