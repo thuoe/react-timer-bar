@@ -12,8 +12,11 @@ type TimerBarProps = {
 };
 
 type ReactTimerProps = {
+  /** Total progress time in seconds */
   time: number;
+  /** Color of the progress bar */
   fillColor: string;
+  /** Color of the progress bar */
   direction?: FlowDirection;
 };
 
