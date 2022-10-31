@@ -1,14 +1,23 @@
 import * as React from 'react';
-import styled from '@emotion/styled';
+import styled, { CSSObject } from '@emotion/styled';
+
+type FlowDirection = 'leftToRight' | 'rightToLeft' | 'bottomToTop' | 'topToBottom';
+
+type OffsetDimension = 'offsetWidth' | 'offsetHeight';
 
 type TimerBarProps = {
+  fill: number;
   fillColor: string;
-  fillWidth: number;
+  direction: FlowDirection;
 };
 
 type ReactTimerProps = {
+  /** Total progress time in seconds */
   time: number;
+  /** Color of the progress bar */
   fillColor: string;
+  /** Color of the progress bar */
+  direction?: FlowDirection;
 };
 
 const Container = styled.div(() => ({
@@ -20,24 +29,58 @@ const Container = styled.div(() => ({
   textAlign: 'center',
 }));
 
-const Timerbar = styled.div<TimerBarProps>(({ fillWidth, fillColor }) => ({
-  position: 'relative',
-  height: '100%',
-  transition: 'width 200ms',
-  backgroundColor: fillColor,
-  width: `${fillWidth}px`,
-}));
+const Timerbar = styled.div<TimerBarProps>(({ fill, fillColor, direction }) => {
+  const styles: CSSObject = { position: 'absolute', backgroundColor: fillColor };
 
-export const ReactTimerBar = ({ time = 0, fillColor = 'blue' }: ReactTimerProps): JSX.Element => {
+  switch (direction) {
+    case 'leftToRight':
+      return {
+        ...styles,
+        height: '100%',
+        transition: 'width 200ms',
+        backgroundColor: fillColor,
+        width: `${fill}px`,
+      };
+    case 'rightToLeft':
+      return {
+        ...styles,
+        height: '100%',
+        transition: 'width 200ms',
+        backgroundColor: fillColor,
+        width: `${fill}px`,
+        right: 0,
+      };
+    case 'bottomToTop':
+      return {
+        ...styles,
+        width: '100%',
+        transition: 'height 200ms',
+        height: `${fill}px`,
+        bottom: 0,
+      };
+    case 'topToBottom':
+      return {
+        ...styles,
+        width: '100%',
+        transition: 'height 200ms',
+        height: `${fill}px`,
+        top: 0,
+      };
+    default:
+      break;
+  }
+});
+
+const formatTime = (newTime: number): string => {
+  const minutes = Math.floor(newTime / 60);
+  const seconds = newTime - minutes * 60; 
+  const secondPrefix = seconds < 10 ? '0' : '';   
+  return `${minutes}:${secondPrefix}${seconds}`;
+};
+
+export const ReactTimerBar = ({ time = 0, fillColor = 'blue', direction = 'leftToRight' }: ReactTimerProps): JSX.Element => {
   const container = React.useRef<HTMLDivElement | null>(null);
   const [timeElapsed, setTimeElapsed] = React.useState<number>(0);
-
-  function formatTime(newTime: number): string {
-    const minutes = Math.floor(newTime / 60);
-    const seconds = newTime - minutes * 60; 
-    const secondPrefix = seconds < 10 ? '0' : '';   
-    return `${minutes}:${secondPrefix}${seconds}`;
-  }
 
   React.useEffect(() => {
     setTimeElapsed(0);
@@ -57,13 +100,23 @@ export const ReactTimerBar = ({ time = 0, fillColor = 'blue' }: ReactTimerProps)
     };
   }, [timeElapsed]);
 
-  const timerWidth = container.current ? container.current.offsetWidth : 0;
-  const fillWidth = (timeElapsed / time) * timerWidth;
+
+  let offsetDimension: OffsetDimension;
+
+  if (direction === 'leftToRight' || direction === 'rightToLeft') {
+    offsetDimension = 'offsetWidth';
+  }
+  if (direction === 'bottomToTop' || direction === 'topToBottom') {
+    offsetDimension = 'offsetHeight';
+  }
+
+  const finalDimension = container.current?.[offsetDimension] ?? 0;
+  const fill = (timeElapsed / time) * finalDimension;
 
   return (
     <>
       <Container id="container" ref={container}>
-        <Timerbar id='progress-bar' fillColor={fillColor} fillWidth={fillWidth}></Timerbar>
+        <Timerbar id='progress-bar' direction={direction} fillColor={fillColor} fill={fill}></Timerbar>
         <span title="Time Elapsed">Time Elapsed {formatTime(timeElapsed)}</span>
       </Container>
     </>

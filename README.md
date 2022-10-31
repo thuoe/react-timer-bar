@@ -7,3 +7,11 @@
 </p>
 
 <p align="center">A simple React bar component used to countdown time.</p>
+
+## Props
+
+| name      | description                       | type                                                             | default       |
+|-----------|-----------------------------------|------------------------------------------------------------------|---------------|
+| time      | Total progress time in seconds    | `number`                                                         | `0`           |
+| direction | The direction of the progress bar | `leftToRight` \| `rightToLeft` \| `bottomToTop` \| `topToBottom` | `leftToRight` |
+| fillColor | Color of the progress bar         | `string`                                                         | `blue`        |
