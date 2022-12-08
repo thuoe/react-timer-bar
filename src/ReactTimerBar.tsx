@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled, { CSSObject } from '@emotion/styled';
 
-type FlowDirection = 'leftToRight' | 'rightToLeft' | 'bottomToTop' | 'topToBottom';
+export type FlowDirection = 'leftToRight' | 'rightToLeft' | 'bottomToTop' | 'topToBottom';
 
 type OffsetDimension = 'offsetWidth' | 'offsetHeight';
 
