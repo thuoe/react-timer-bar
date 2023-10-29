@@ -1,0 +1,25 @@
+@font-face {
+  font-family: 'GeistMono-Regular';
+  src: local('GeistMono-Regular'),
+    url('./fonts/GeistMono-Regular.otf') format('opentype');
+}
+@font-face {
+  font-family: 'GiestMono-Medium';
+  src: local('GeistMono-Medium'),
+    url('./fonts/GeistMono-Medium.otf') format('opentype');
+}
+@font-face {
+  font-family: 'GeistMono-Bold';
+  src: local('GeistMono-Bold'),
+    url('./fonts/GeistMono-Bold.otf') format('opentype');
+}
+@font-face {
+  font-family: 'GeistMono-SemiBold';
+  src: local('GeistMono-SemiBold'),
+    url('./fonts/GeistMono-SemiBold.otf') format('opentype');
+}
+
+
+* {
+  font-family: 'GeistMono-Regular';
+}
