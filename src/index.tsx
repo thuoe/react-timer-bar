@@ -1,38 +1,131 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import { ReactTimerBar, FlowDirection } from './ReactTimerBar';
+import styled, { CSSObject } from '@emotion/styled';
 
-type DemoProps = {
-  direction: FlowDirection
+export type FlowDirection = 'leftToRight' | 'rightToLeft' | 'bottomToTop' | 'topToBottom';
+
+type OffsetDimension = 'offsetWidth' | 'offsetHeight';
+
+type TimerBarProps = {
+  fill: number;
+  fillColor: string;
+  direction: FlowDirection;
 };
 
-const FlexDirectionDemo = ({ direction }: DemoProps) => {
-  const heading = direction === 'bottomToTop' ? 'Bottom to top'
-    : direction === 'topToBottom' ? 'Top to Bottom' 
-      : direction === 'leftToRight' ? 'Left to Right' 
-        : direction === 'rightToLeft' ? 'Right to Left'
-          : undefined;
-  return (
-    <div style={{ margin: '0 auto' }}>
-      <h2>{heading}</h2>
-      <ReactTimerBar fillColor="blue" time={20} direction={direction}/>
-    </div>
-  );
+export type ReactTimerProps = {
+  /** Total progress time in seconds */
+  time: number;
+  /** Color of the progress bar */
+  fillColor: string;
+  /** Color of the progress bar */
+  direction?: FlowDirection;
+  /** Event when timer has ended */
+  onEnd?: () => void
 };
 
-const DemoPage = () => {
+const Container = styled.div(() => ({
+  position: 'relative',
+  backgroundColor: 'red',
+  borderRadius: '3px',
+  width: '300px',
+  height: '100px',
+  textAlign: 'center',
+}));
+
+const Timerbar = styled.div<TimerBarProps>(({ fill, fillColor, direction }) => {
+  const styles: CSSObject = { position: 'absolute', backgroundColor: fillColor };
+
+  switch (direction) {
+    case 'leftToRight':
+      return {
+        ...styles,
+        height: '100%',
+        transition: 'width 200ms',
+        backgroundColor: fillColor,
+        width: `${fill}px`,
+      };
+    case 'rightToLeft':
+      return {
+        ...styles,
+        height: '100%',
+        transition: 'width 200ms',
+        backgroundColor: fillColor,
+        width: `${fill}px`,
+        right: 0,
+      };
+    case 'bottomToTop':
+      return {
+        ...styles,
+        width: '100%',
+        transition: 'height 200ms',
+        height: `${fill}px`,
+        bottom: 0,
+      };
+    case 'topToBottom':
+      return {
+        ...styles,
+        width: '100%',
+        transition: 'height 200ms',
+        height: `${fill}px`,
+        top: 0,
+      };
+    default:
+      break;
+  }
+});
+
+const formatTime = (newTime: number): string => {
+  const minutes = Math.floor(newTime / 60);
+  const seconds = newTime - minutes * 60; 
+  const secondPrefix = seconds < 10 ? '0' : '';   
+  return `${minutes}:${secondPrefix}${seconds}`;
+};
+
+export const ReactTimerBar = ({ time = 0, fillColor = 'blue', direction = 'leftToRight', onEnd }: ReactTimerProps): JSX.Element => {
+  const container = React.useRef<HTMLDivElement | null>(null);
+  const [timeElapsed, setTimeElapsed] = React.useState<number>(0);
+
+  React.useEffect(() => {
+    setTimeElapsed(0);
+  }, [time]);
+
+  React.useEffect(() => {
+    let timerInterval: NodeJS.Timer;
+    if (timeElapsed < time) {
+      timerInterval = setInterval(() => {
+        setTimeElapsed(timeElapsed + 1);
+      }, 1000);
+    }
+
+    if (onEnd && time === timeElapsed) {
+      onEnd();
+    }
+
+    return () => {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+      }
+    };
+  }, [timeElapsed]);
+
+
+  let offsetDimension: OffsetDimension;
+
+  if (direction === 'leftToRight' || direction === 'rightToLeft') {
+    offsetDimension = 'offsetWidth';
+  }
+  if (direction === 'bottomToTop' || direction === 'topToBottom') {
+    offsetDimension = 'offsetHeight';
+  }
+
+  const finalDimension = container.current?.[offsetDimension] ?? 0;
+  const fill = (timeElapsed / time) * finalDimension;
+
   return (
     <>
-    <div style={{ display: 'flex', flexDirection: 'column'  }}>
-    <p>These are various directions you can use...</p>
-      <FlexDirectionDemo direction='bottomToTop' />
-      <FlexDirectionDemo direction='topToBottom' />
-      <FlexDirectionDemo direction='leftToRight' />
-      <FlexDirectionDemo direction='rightToLeft' />
-    </div>
+      <Container id="container" ref={container}>
+        <Timerbar id='progress-bar' direction={direction} fillColor={fillColor} fill={fill}></Timerbar>
+        <span title="Time Elapsed">Time Elapsed {formatTime(timeElapsed)}</span>
+      </Container>
     </>
-  );
+  ); 
 };
-
-
-ReactDOM.render(<DemoPage/>, document.getElementById('output'));
