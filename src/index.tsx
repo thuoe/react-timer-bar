@@ -25,12 +25,12 @@ export type ReactTimerProps = {
 const Container = styled.div(() => ({
   position: 'relative',
   backgroundColor: 'red',
-  borderRadius: '3px',
+  borderRadius: '20px',
   textAlign: 'center',
 }));
 
 const Timerbar = styled.div<TimerBarProps>(({ fill, fillColor, direction }) => {
-  const styles: CSSObject = { position: 'absolute', backgroundColor: fillColor };
+  const styles: CSSObject = { position: 'absolute', backgroundColor: fillColor, borderRadius: '20px' };
 
   switch (direction) {
     case 'leftToRight':
