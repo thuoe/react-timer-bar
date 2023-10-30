@@ -27,6 +27,7 @@ const Container = styled.div(() => ({
   backgroundColor: 'red',
   borderRadius: '20px',
   textAlign: 'center',
+  overflow: 'hidden',
 }));
 
 const Timerbar = styled.div<TimerBarProps>(({ fill, fillColor, direction }) => {
