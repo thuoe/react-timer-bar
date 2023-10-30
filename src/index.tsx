@@ -26,8 +26,6 @@ const Container = styled.div(() => ({
   position: 'relative',
   backgroundColor: 'red',
   borderRadius: '3px',
-  width: '300px',
-  height: '100px',
   textAlign: 'center',
 }));
 
