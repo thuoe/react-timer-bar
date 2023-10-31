@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import './font.css';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { CodeBlock } from 'react-code-blocks';
+import { CodeBlock, monoBlue } from 'react-code-blocks';
 import { ReactTimerBar, ReactTimerProps } from '../src';
 import styled from '@emotion/styled';
 
@@ -17,7 +17,7 @@ const FlexDirectionDemo = ({ direction, snippet, ...rest }: ReactTimerProps & { 
     <div style={{ margin: '0 auto' }}>
       <h2>{heading}</h2>
       <ReactTimerBar {...rest} direction={direction}/>
-      <CodeBlock language="typescript" text={snippet} showLineNumbers={false} />
+      <CodeBlock customStyle={ { marginTop: '20px ' }} theme={monoBlue} language="typescript" text={snippet} showLineNumbers={false} />
     </div>
   );
 };
