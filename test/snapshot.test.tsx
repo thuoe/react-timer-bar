@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
-import { ReactTimerBar } from '../src/ReactTimerBar';
+import { ReactTimerBar } from '../src';
 
 
 describe('Basic snapshot test', () => {

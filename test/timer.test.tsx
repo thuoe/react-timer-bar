@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { screen, render, act, waitFor } from '@testing-library/react';
 import { matchers } from '@emotion/jest';
-import { ReactTimerBar } from '../src/ReactTimerBar';
+import { ReactTimerBar } from '../src';
 
 expect.extend(matchers);
 
