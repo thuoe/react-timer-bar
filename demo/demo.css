@@ -19,7 +19,10 @@
     url('./fonts/GeistMono-SemiBold.otf') format('opentype');
 }
 
-
 * {
   font-family: 'GeistMono-Regular';
+}
+
+select { 
+  max-width: 400px;
 }

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import './font.css';
+import './demo.css';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { CodeBlock, monoBlue } from 'react-code-blocks';
-import { ReactTimerBar, ReactTimerProps } from '../src';
+import { FlowDirection, ReactTimerBar, ReactTimerProps } from '../src';
 import styled from '@emotion/styled';
 
 
@@ -15,7 +15,7 @@ const FlexDirectionDemo = ({ direction, snippet, ...rest }: ReactTimerProps & { 
           : undefined;
   return (
     <div style={{ margin: '0 auto' }}>
-      <h2>{heading}</h2>
+      <h3>{heading}</h3>
       <ReactTimerBar {...rest} direction={direction}/>
       <CodeBlock wrapLongLines customStyle={ { marginTop: '20px', width: '100%' }} theme={monoBlue} language="typescript" text={snippet} showLineNumbers={false} />
     </div>
@@ -32,11 +32,12 @@ const Card = styled.div(() => ({
 }));
 
 const DemoPage = () => {
+  const [direction, setDirection] = React.useState<FlowDirection>('leftToRight');
   const props = {
     time: 20,
     fillColor: 'blue',
   };
-  
+
   return (
     <>
       <Card>
@@ -65,12 +66,16 @@ const DemoPage = () => {
           } 
           showLineNumbers={false} />
 
-        <h2>Directions:</h2>
-        <p>These are various directions props you can use...</p>
-        <FlexDirectionDemo snippet='<ReactTimerBar time={20} fillColor="red" direction="bottomToTop" />' direction='bottomToTop' {...props} />
-        <FlexDirectionDemo snippet='<ReactTimerBar time={20} fillColor="red" direction="topToBottom" />' direction='topToBottom' {...props}/>
-        <FlexDirectionDemo snippet='<ReactTimerBar time={20} fillColor="red" direction="leftToRight" />' direction='leftToRight' {...props} />
-        <FlexDirectionDemo snippet='<ReactTimerBar time={20} fillColor="red" direction="rightToLeft" />' direction='rightToLeft' {...props}/>
+        <h2>Directions</h2>
+       
+        <select style={{ margin: '0 auto', minWidth: '200px' }} name="Directions" id="direction-select" onChange={(event) => setDirection(event.target.value as FlowDirection)}>
+          <option value="leftToRight">Left to Right</option>
+          <option value="rightToLeft">Right to Left</option>
+          <option value="topToBottom">Top to Bottom</option>
+          <option value="bottomToTop">Bottom to Top</option>
+        </select>
+
+        <FlexDirectionDemo snippet={`<ReactTimerBar time={20} fillColor="red" direction="${direction}" />`} direction={direction} {...props} />
       </Card>
     </>
   );
