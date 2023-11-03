@@ -20,14 +20,17 @@ export type ReactTimerProps = {
   direction?: FlowDirection;
   /** Event when timer has ended */
   onEnd?: () => void
+  /** Styling options for the timer */
+  styles?: CSSObject
 };
 
-const Container = styled.div(() => ({
+const Container = styled.div(({ styles }: { styles: CSSObject }) => ({
   position: 'relative',
   backgroundColor: 'red',
   borderRadius: '20px',
   textAlign: 'center',
   overflow: 'hidden',
+  ...styles,
 }));
 
 const Timerbar = styled.div<TimerBarProps>(({ fill, fillColor, direction }) => {
@@ -79,7 +82,7 @@ const formatTime = (newTime: number): string => {
   return `${minutes}:${secondPrefix}${seconds}`;
 };
 
-export const ReactTimerBar = ({ time = 0, fillColor = 'blue', direction = 'leftToRight', onEnd }: ReactTimerProps): JSX.Element => {
+export const ReactTimerBar = ({ time = 0, fillColor = 'blue', direction = 'leftToRight', styles, onEnd }: ReactTimerProps): JSX.Element => {
   const container = React.useRef<HTMLDivElement | null>(null);
   const [timeElapsed, setTimeElapsed] = React.useState<number>(0);
 
@@ -121,7 +124,7 @@ export const ReactTimerBar = ({ time = 0, fillColor = 'blue', direction = 'leftT
 
   return (
     <>
-      <Container id="container" ref={container}>
+      <Container styles={styles} id="container" ref={container}>
         <Timerbar id='progress-bar' direction={direction} fillColor={fillColor} fill={fill}></Timerbar>
         <span title="Time Elapsed">Time Elapsed {formatTime(timeElapsed)}</span>
       </Container>
