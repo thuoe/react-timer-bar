@@ -4,15 +4,15 @@ exports[`Basic snapshot test renders succesfully 1`] = `
 .emotion-0 {
   position: relative;
   background-color: red;
-  border-radius: 3px;
-  width: 300px;
-  height: 100px;
+  border-radius: 20px;
   text-align: center;
+  overflow: hidden;
 }
 
 .emotion-1 {
   position: absolute;
   background-color: red;
+  border-radius: 20px;
   height: 100%;
   -webkit-transition: width 200ms;
   transition: width 200ms;

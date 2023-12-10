@@ -7,18 +7,24 @@ import { FlowDirection, ReactTimerBar, ReactTimerProps } from '../src';
 import styled from '@emotion/styled';
 
 
-const FlexDirectionDemo = ({ direction, snippet, ...rest }: ReactTimerProps & { snippet: string }) => {
-  const heading = direction === 'bottomToTop' ? 'Bottom to Top'
-    : direction === 'topToBottom' ? 'Top to Bottom' 
-      : direction === 'leftToRight' ? 'Left to Right' 
-        : direction === 'rightToLeft' ? 'Right to Left'
-          : undefined;
+const DemoComponent = ({ snippet, heading, ...rest }: ReactTimerProps & { snippet: string, heading?: string }) => {
   return (
     <div style={{ margin: '0 auto' }}>
-      <h3>{heading}</h3>
-      <ReactTimerBar {...rest} direction={direction}/>
+      {heading && <h3>{heading}</h3>}
+      <ReactTimerBar {...rest} />
       <CodeBlock wrapLongLines customStyle={ { marginTop: '20px', width: '100%' }} theme={monoBlue} language="typescript" text={snippet} showLineNumbers={false} />
     </div>
+  );
+};
+
+const FlexDirectionDemo = ({ snippet, ...rest }: ReactTimerProps & { snippet: string }) => {
+  const heading = rest.direction === 'bottomToTop' ? 'Bottom to Top'
+    : rest.direction === 'topToBottom' ? 'Top to Bottom' 
+      : rest.direction === 'leftToRight' ? 'Left to Right' 
+        : rest.direction === 'rightToLeft' ? 'Right to Left'
+          : undefined;
+  return (
+    <DemoComponent heading={heading} snippet={snippet} {...rest} />
   );
 };
 
@@ -76,6 +82,14 @@ const DemoPage = () => {
         </select>
 
         <FlexDirectionDemo snippet={`<ReactTimerBar time={20} fillColor="red" direction="${direction}" />`} direction={direction} {...props} />
+
+        <h2>Override Styles</h2>
+        <DemoComponent 
+          snippet={'ReactTimerBar style={{ width: \'200px\', height: \'300px\', borderRadius: \'25px\' }} time={10} fillColor="blue" />'} 
+          styles={{ width: '200px', height: '300px', borderRadius: '25px', margin: '0 auto' }} 
+          time={10} 
+          fillColor="blue"
+        />
       </Card>
     </>
   );
