@@ -1,11 +1,14 @@
 const path = require('path');
 const config = require('./webpack.config.common')
 
+const commonConfig = config('production')
+
 module.exports = {
-  ...config('production'),
+  ...commonConfig,
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
+    clean: true,
   },
 };
