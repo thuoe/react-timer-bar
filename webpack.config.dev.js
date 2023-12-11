@@ -1,32 +1,14 @@
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const config = require('./webpack.config.common')
 
 module.exports = {
-  mode: 'development',
+  ...config('development'),
   entry: './demo/index.tsx',
-  target: 'web',
   devtool: 'eval-source-map',
   output: {
     path: path.resolve(__dirname, 'devDist'),
     filename: 'devBundle.js',
-  },
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
-  },
-  module: {
-    rules: [
-      {
-			  test: /\.tsx?$/,
-			  use: 'ts-loader',
-			  exclude: /node_modules/,
-      },
-      {
-        test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
-     
-      },
-    ],
   },
   devServer: {
     static: {
@@ -36,7 +18,6 @@ module.exports = {
     port: 3000,
   },
   plugins: [
-    new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'demo', 'index.html'),
     }),
